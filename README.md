@@ -4,5 +4,7 @@
 依赖于Glidehe和PhotoView
 
 
+![image](https://github.com/1593972703/PicDownlaod/blob/master/xiaoxiao1.gif)
+
 
 
