@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -53,7 +51,6 @@ public class ShowLargePicActivity extends Activity {
                         // 数据处理方法，保存bytes到文件
                         bytesToImageFile(bytes);
                     }
-
                     @Override
                     public void onLoadFailed(Exception e, Drawable errorDrawable) {
                         // 下载失败回调
@@ -129,21 +126,17 @@ public class ShowLargePicActivity extends Activity {
     private void bytesToImageFile(byte[] bytes) {
         try {
             String name = String.valueOf(System.currentTimeMillis());
-            String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/iyuba";
+            String dir = Environment.getExternalStorageDirectory().getAbsolutePath() +  "/" + Environment.DIRECTORY_DCIM + "/xiaoxiao";
             FileUtil.makeRootDirectory(dir);
             File file = new File(dir, name + ".jpg");
-            if (file.exists()) {
-                Toast.makeText(this, "file存在", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "file不存在", Toast.LENGTH_SHORT).show();
-            }
+
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(bytes, 0, bytes.length);
             fos.flush();
             fos.close();
             MediaScanner mediaScanner = new MediaScanner(ShowLargePicActivity.this);
             mediaScanner.scanFile(file, "image/.jpg");
-            Toast.makeText(ShowLargePicActivity.this, "图片已保存到" + file.getAbsolutePath(), Toast.LENGTH_SHORT);
+            Toast.makeText(ShowLargePicActivity.this, "图片已保存到" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
